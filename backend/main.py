@@ -56,3 +56,13 @@ def getNote(noteID):
             return data
     except:
         return("Error opening note")
+
+
+@app.route("/api/v1/getAllNotes")
+def getAllNotes():
+    files = os.listdir(saveFolder)
+    notes = []
+    for i in files:
+        noteID = (i.split(".")[0])
+        notes.append(getNote(noteID))
+    return notes
