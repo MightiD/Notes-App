@@ -47,8 +47,12 @@ def writeNote():
         return "Content-Type not supported!"
 
 
-
-#TODO: 
-# Load files
-# Make a standard for notes
-# Figure out a standard I want to use
+@app.route("/api/v1/getNote/<noteID>")
+def getNote(noteID):
+    try:
+        with open(f"{saveFolder}/{noteID}.json", "r") as file:
+            data = json.load(file)
+            print(data)
+            return data
+    except:
+        return("Error opening note")
